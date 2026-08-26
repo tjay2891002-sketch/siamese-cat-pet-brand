@@ -201,3 +201,4 @@ pnpm seed                        # 填充演示线索
 ## 相关文档
 
 - 开发记录（改动 / 做法 / 压测）：[docs/DEVELOPMENT_NOTES.md](./docs/DEVELOPMENT_NOTES.md)
+- 项目复盘（做了什么 / 架构 / 难题 / 优化路线）：[docs/PROJECT_RETROSPECTIVE.md](./docs/PROJECT_RETROSPECTIVE.md)
