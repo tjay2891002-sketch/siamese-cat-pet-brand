@@ -7,6 +7,7 @@ import type { FormEvent } from "react";
 import { Mail, MessageCircle, Send } from "lucide-react";
 import { toast } from "sonner";
 
+import { reportLead } from "@/lib/leads";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -28,7 +29,8 @@ export function LeadCapture() {
     const payload = { name, contact, message, submittedAt: new Date().toISOString() };
     const previous = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
     localStorage.setItem(STORAGE_KEY, JSON.stringify([payload, ...previous].slice(0, 50)));
-    toast.success("咨询线索已暂存。正式上线时可接入飞书/企业微信/邮箱通知。");
+    reportLead("consult", payload);
+    toast.success("咨询已提交，客服会尽快联系你。");
     setContact("");
   };
 
@@ -61,7 +63,7 @@ export function LeadCapture() {
         <Button type="submit" variant="secondary" className="h-13 rounded-full px-6 font-black">
           <Send className="mr-2 h-5 w-5" />提交咨询线索
         </Button>
-        <a href="mailto:hello@ninelives.example?subject=九命鲜厨试吃咨询" className="inline-flex h-13 items-center justify-center rounded-full border border-black/15 px-6 text-sm font-black transition hover:bg-black/10">
+        <a href="mailto:hello@kimi.example?subject=基米厨房试吃咨询" className="inline-flex h-13 items-center justify-center rounded-full border border-black/15 px-6 text-sm font-black transition hover:bg-black/10">
           <Mail className="mr-2 h-5 w-5" />邮件咨询入口
         </a>
       </div>

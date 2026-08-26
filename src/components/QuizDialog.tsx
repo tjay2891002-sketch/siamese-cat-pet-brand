@@ -7,6 +7,8 @@ import type { FormEvent } from "react";
 import { ArrowRight, CheckCircle2, Copy, Loader2, Sparkles } from "lucide-react";
 import { toast } from "sonner";
 
+import { reportLead } from "@/lib/leads";
+import { getRecommendation } from "@/lib/recommendation";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
@@ -23,32 +25,6 @@ const STORAGE_KEY = "nine-lives-kitchen-leads";
 type QuizDialogProps = {
   open: boolean;
   onOpenChange: (open: boolean) => void;
-};
-
-const getRecommendation = (lead: Omit<QuizLead, "submittedAt">) => {
-  const isPicky = lead.picky.includes("非常") || lead.goals.includes("改善挑食");
-  const gut = lead.goals.includes("肠胃更稳定");
-  const weight = lead.goals.includes("控制体重");
-
-  if (isPicky && gut) {
-    return {
-      title: "鸡肉温煮餐 + 冻干肠胃小方",
-      desc: "先用气味温和的鸡肉鲜食打开食欲，再用冻干小方帮助换粮过渡。建议从 25% 鲜食比例开始。",
-      plan: "试吃启动包 ¥39",
-    };
-  }
-  if (weight) {
-    return {
-      title: "控热量鲜食订阅计划",
-      desc: "按体重估算每日热量，先从单猫 3 日试吃开始，观察饱腹感与便便状态后再订阅。",
-      plan: "单猫鲜食订阅 ¥199 / 2 周起",
-    };
-  }
-  return {
-    title: "原切鸡肉温煮餐试吃包",
-    desc: "适合作为鲜食入门方案，先验证猫咪接受度，再决定是否加入周期配送。",
-    plan: "试吃启动包 ¥39",
-  };
 };
 
 export function QuizDialog({ open, onOpenChange }: QuizDialogProps) {
@@ -84,6 +60,7 @@ export function QuizDialog({ open, onOpenChange }: QuizDialogProps) {
     const lead: QuizLead = { ...form, submittedAt: new Date().toISOString() };
     const previous = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]") as QuizLead[];
     localStorage.setItem(STORAGE_KEY, JSON.stringify([lead, ...previous].slice(0, 50)));
+    reportLead("quiz", lead);
 
     window.setTimeout(() => {
       setIsSubmitting(false);

@@ -25,3 +25,9 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# 薄后台线索数据
+server/data/
+
+# 环境变量与密钥
+.env

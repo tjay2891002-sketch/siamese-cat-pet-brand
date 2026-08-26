@@ -93,12 +93,16 @@ function Carousel({
 
   React.useEffect(() => {
     if (!api) return
-    onSelect(api)
-    api.on("reInit", onSelect)
-    api.on("select", onSelect)
+    // 首帧延迟同步初始状态，避免在 effect 内同步 setState 触发级联渲染
+    const update = () => onSelect(api)
+    const raf = requestAnimationFrame(update)
+    api.on("reInit", update)
+    api.on("select", update)
 
     return () => {
-      api?.off("select", onSelect)
+      cancelAnimationFrame(raf)
+      api?.off("select", update)
+      api?.off("reInit", update)
     }
   }, [api, onSelect])
 

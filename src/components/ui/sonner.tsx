@@ -17,8 +17,14 @@ const Toaster = ({ ...props }: ToasterProps) => {
       setTheme(document.documentElement.classList.contains("dark") ? "dark" : "light")
     })
     observer.observe(document.documentElement, { attributes: true, attributeFilter: ["class"] })
-    setTheme(document.documentElement.classList.contains("dark") ? "dark" : "light")
-    return () => observer.disconnect()
+    // 首帧延迟读取主题，避免在 effect 内同步 setState
+    const raf = requestAnimationFrame(() => {
+      setTheme(document.documentElement.classList.contains("dark") ? "dark" : "light")
+    })
+    return () => {
+      cancelAnimationFrame(raf)
+      observer.disconnect()
+    }
   }, [])
 
   return (

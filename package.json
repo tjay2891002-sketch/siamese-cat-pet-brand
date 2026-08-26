@@ -3,11 +3,21 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "packageManager": "pnpm@11.6.0",
+  "engines": {
+    "node": ">=22"
+  },
   "scripts": {
     "dev": "vite",
+    "server": "node server/index.mjs",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "dev:all": "node scripts/dev-all.mjs",
+    "seed": "node scripts/seed.mjs",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "load-test": "node scripts/load-test.mjs"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.4.0",
