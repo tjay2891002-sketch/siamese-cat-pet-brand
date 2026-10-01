@@ -3,7 +3,7 @@
 > 中文宠物鲜食（DTC）品牌一体化项目：**品牌官网 + 智能客服（RAG + 知识图谱）+ 运营后台**。
 > 围绕「先测评 → 再试吃 → 再订阅」的高转化漏斗，面向可对外演示的 MVP。
 
-![React](https://img.shields.io/badge/React-19-61dafb) ![Vite](https://img.shields.io/badge/Vite-7-646cff) ![TypeScript](https://img.shields.io/badge/TypeScript-5.9-3178c6) ![Node](https://img.shields.io/badge/Node-22-3c873a) ![Vitest](https://img.shields.io/badge/Vitest-4-6e9f18)
+[![CI](https://github.com/tjay2891002-sketch/siamese-cat-pet-brand/actions/workflows/ci.yml/badge.svg)](https://github.com/tjay2891002-sketch/siamese-cat-pet-brand/actions/workflows/ci.yml) ![React](https://img.shields.io/badge/React-19-61dafb) ![Vite](https://img.shields.io/badge/Vite-7-646cff) ![TypeScript](https://img.shields.io/badge/TypeScript-5.9-3178c6) ![Node](https://img.shields.io/badge/Node-22-3c873a) ![Vitest](https://img.shields.io/badge/Vitest-4-6e9f18)
 
 ## 系统组成
 
