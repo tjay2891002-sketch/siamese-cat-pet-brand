@@ -190,7 +190,7 @@ pnpm seed                        # 填充演示线索
 - [x] README 截图补充与封面排版
 - [ ] 知识库扩充（报价 / 过敏 / 多猫 / 喂食量；配送与售后已在 02 / 03 篇）
 - [ ] Neo4j 图谱可视化（推荐理由 / 关联商品）
-- [ ] CI 纳入集成测试（当前 CI 只跑 lint + build；且 workflow 触发分支写的是 `main`，需与默认分支 `master` 对齐才会真正运行）
+- [x] CI 纳入集成测试（workflow 在所有分支触发，覆盖 lint / type check & build / test）
 - [x] 上 GitHub 前安全收尾（密钥扫描、确认不提交 `.env` / `leads.jsonl`）
 
 ## 已知边界
