@@ -66,8 +66,10 @@
 前置：Docker Desktop（运行 Dify 与 Neo4j）、Node 22+、pnpm。
 
 ```bash
-# 1. 启动 Dify（首次需拉镜像）
-cd dify/docker && docker compose up -d     # Dify 仓库需单独克隆
+# 1. 启动 Dify（本仓库不含 Dify 源码，先克隆到项目根目录下的 dify/）
+git clone --depth 1 https://github.com/langgenius/dify.git dify
+cd dify/docker && docker compose up -d     # 首次会拉取镜像，耗时较长
+cd ../..                                   # 回到项目根目录，继续下面步骤
 
 # 2. 启动 Neo4j
 docker start neo4j-ninelives
@@ -185,11 +187,11 @@ pnpm seed                        # 填充演示线索
 ## 路线图
 
 - [ ] 容器化部署：`Dockerfile` + `docker-compose.yml`（前端静态 + 后端 + Neo4j）
-- [ ] README 截图补充与封面排版
-- [ ] 知识库扩充（报价 / 配送 / 退换 / 过敏 / 多猫 / 喂食量）
+- [x] README 截图补充与封面排版
+- [ ] 知识库扩充（报价 / 过敏 / 多猫 / 喂食量；配送与售后已在 02 / 03 篇）
 - [ ] Neo4j 图谱可视化（推荐理由 / 关联商品）
-- [ ] CI 纳入集成测试
-- [ ] 上 GitHub 前安全收尾（密钥扫描、确认不提交 `.env` / `leads.jsonl`）
+- [ ] CI 纳入集成测试（当前 CI 只跑 lint + build；且 workflow 触发分支写的是 `main`，需与默认分支 `master` 对齐才会真正运行）
+- [x] 上 GitHub 前安全收尾（密钥扫描、确认不提交 `.env` / `leads.jsonl`）
 
 ## 已知边界
 
